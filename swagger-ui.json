@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "host": "site.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "title": "Rates API Documentation",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/api/{symbol}": {
+      "get": {
+        "summary": "The endpoint is used to get historycal rates on dedust.io(v2)",
+        "operationId": "getV2Rates",
+        "tags": [
+          "rates"
+        ],
+        "parameters": [
+          {
+            "description": "From row.",
+            "required": false,
+            "schema": {
+              "title": "From",
+              "type": "string",
+              "description": "From row."
+            },
+            "name": "from",
+            "in": "query"
+          },
+           {
+            "description": "To row.",
+            "required": false,
+            "schema": {
+              "title": "To",
+              "type": "string",
+              "description": "To row."
+            },
+            "name": "to",
+            "in": "query"
+          }
+        ],
+        
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "Successful"
+          }
+        },
+        "deprecated": true
+      }
+    }
+
+  }
+}
