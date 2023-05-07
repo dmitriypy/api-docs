@@ -148,3 +148,30 @@ print(r.json())
      'tnr': 'EQCR_4x99hcPWXDsJHGm52IMgTOQd7Mrta1GlEruJZuOjb5u',
      'tnx': 'EQAycFS0Mr1ZsydnS6OmswoJZCDSxIciAHZFVKOrDll3FBpL'}
 ```
+
+#### Python Bot Example(dirty)
+```py
+from aiogram import Bot, Dispatcher, executor
+import requests
+ 
+TOKEN = "TOKEN"
+ 
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+ 
+tokens = requests.get("https://site.com/api/tokens.json").json()
+ 
+@dp.message_handler(commands=list(tokens))
+async def start(message):
+    token = message.text.split("@")[0].replace("/", "")
+ 
+    r = requests.get(f"https://site.com/api/getInfoByContract?contract={tokens[token]}")
+ 
+    if r.status_code == 200:
+        token_data = r.json()
+        await bot.send_message(message.chat.id, (
+                               f"1 {token.upper()} = {token_data['jetton']} TON\n"
+                               f"1 TON = {token_data['ton']} {token.upper()}"))
+ 
+executor.start_polling(dp, skip_updates=True)
+```
