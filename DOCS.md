@@ -16,7 +16,7 @@ https://site.com
 ```py
 import requests
 
-r = requests.get("https://site.com/api/scale")
+r = requests.get("https://site.com/api/token/scale")
 print(r.json())
 >>> {"len_of_all_rows":92438,"ok":true}
 ```
@@ -28,7 +28,7 @@ import requests
 
 base_url = "https://site.com"
 
-r = requests.get(f"{base_url}/api/scale?from=0&to=10")
+r = requests.get(f"{base_url}/api/token/scale?from_row=0&to_row=10")
 print(r.json())
 
 >>> {'data': {'len_of_all_rows': 92438,
